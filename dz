@@ -1,29 +1,26 @@
 
 create table if not exists Genres(
 ID SERIAL primary key,
-Name_of_the_genre varchar(15) not null unique,
-List_of_artists varchar(20) not null unique
+Name_of_the_genre varchar(15) not null unique
 );
 
 create table if not exists Artists(
 ID SERIAL primary key,
 Name_of_the_artist varchar(15) not null unique,
-Album_list varchar(15) not null unique,
 Genres_id integer REFERENCES Genres (id)
 );
 
 create table if not exists Albums(
 ID SERIAL primary key,
 Album_name varchar(15) not null unique,
-Year_of_release date not null,
-Track_list varchar(20) not null unique,
+Year_of_release integer not null,
 foreign key (Artist_id) references Artists (id)
 );
 
 create table if not exists Tracks(
 ID SERIAL primary key,
 Track_name varchar(15) not null unique,
-Duration time not null,
+Duration integer not null,
 Album_id integer references Albums (id)
 );
 
